@@ -2,28 +2,28 @@
 <testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="54929" started-at="2020-06-27T23:40:40 IST" finished-at="2020-06-27T23:41:35 IST">
+  <suite name="Default suite" duration-ms="19409" started-at="2020-07-02T11:03:38 IST" finished-at="2020-07-02T11:03:57 IST">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="54929" started-at="2020-06-27T23:40:40 IST" finished-at="2020-06-27T23:41:35 IST">
-      <class name="com.training.sanity.tests.ViewRemoveCartTests">
-        <test-method status="PASS" signature="setUpBeforeClass()[pri:0, instance:com.training.sanity.tests.ViewRemoveCartTests@2a17b7b6]" name="setUpBeforeClass" is-config="true" duration-ms="12" started-at="2020-06-27T23:40:40 IST" finished-at="2020-06-27T23:40:40 IST">
+    <test name="Default test" duration-ms="19409" started-at="2020-07-02T11:03:38 IST" finished-at="2020-07-02T11:03:57 IST">
+      <class name="com.training.sanity.tests.DeleteCategoryTests">
+        <test-method status="PASS" signature="setUpBeforeClass()[pri:0, instance:com.training.sanity.tests.DeleteCategoryTests@2a17b7b6]" name="setUpBeforeClass" is-config="true" duration-ms="28" started-at="2020-07-02T11:03:38 IST" finished-at="2020-07-02T11:03:38 IST">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUpBeforeClass -->
-        <test-method status="PASS" signature="setUp()[pri:0, instance:com.training.sanity.tests.ViewRemoveCartTests@2a17b7b6]" name="setUp" is-config="true" duration-ms="27478" started-at="2020-06-27T23:40:40 IST" finished-at="2020-06-27T23:41:07 IST">
+        <test-method status="PASS" signature="setUp()[pri:0, instance:com.training.sanity.tests.DeleteCategoryTests@2a17b7b6]" name="setUp" is-config="true" duration-ms="11046" started-at="2020-07-02T11:03:38 IST" finished-at="2020-07-02T11:03:49 IST">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method status="PASS" signature="validLoginTest()[pri:0, instance:com.training.sanity.tests.ViewRemoveCartTests@2a17b7b6]" name="validLoginTest" duration-ms="25645" started-at="2020-06-27T23:41:07 IST" finished-at="2020-06-27T23:41:33 IST">
+        <test-method status="PASS" signature="deleteCategory()[pri:0, instance:com.training.sanity.tests.DeleteCategoryTests@2a17b7b6]" name="deleteCategory" duration-ms="6314" started-at="2020-07-02T11:03:49 IST" finished-at="2020-07-02T11:03:55 IST">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- validLoginTest -->
-        <test-method status="PASS" signature="tearDown()[pri:0, instance:com.training.sanity.tests.ViewRemoveCartTests@2a17b7b6]" name="tearDown" is-config="true" duration-ms="1741" started-at="2020-06-27T23:41:33 IST" finished-at="2020-06-27T23:41:35 IST">
+        </test-method> <!-- deleteCategory -->
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:com.training.sanity.tests.DeleteCategoryTests@2a17b7b6]" name="tearDown" is-config="true" duration-ms="1954" started-at="2020-07-02T11:03:55 IST" finished-at="2020-07-02T11:03:57 IST">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-      </class> <!-- com.training.sanity.tests.ViewRemoveCartTests -->
+      </class> <!-- com.training.sanity.tests.DeleteCategoryTests -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
