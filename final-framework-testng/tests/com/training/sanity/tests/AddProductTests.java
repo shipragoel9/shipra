@@ -1,29 +1,26 @@
-//RTTC_012	To Verify whether application allows the admin to display list of Categories
+//RTTC_042-To Verify whether application allows admin to add product by entering valid credentials in mandatory fields only
 
 package com.training.sanity.tests;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
-
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
 import com.training.generics.ScreenShot;
-import com.training.pom.CatalogCategoriesPOM;
+import com.training.pom.AddProductPOM;
 import com.training.utility.DriverFactory;
 import com.training.utility.DriverNames;
 
-public class CatalogCategoriesTests {
+public class AddProductTests {
 
 	private WebDriver driver;
 	private String baseUrl;
-	private CatalogCategoriesPOM catalogCategoriesPOM;
+	private AddProductPOM addProductPOM;
 	private static Properties properties;
 	private ScreenShot screenShot;
 
@@ -37,7 +34,7 @@ public class CatalogCategoriesTests {
 	@BeforeMethod
 	public void setUp() throws Exception {
 		driver = DriverFactory.getDriver(DriverNames.CHROME);
-		catalogCategoriesPOM = new CatalogCategoriesPOM(driver); 
+		addProductPOM = new AddProductPOM(driver); 
 		baseUrl = properties.getProperty("baseURL");
 		screenShot = new ScreenShot(driver); 
 		// open the browser 
@@ -50,23 +47,29 @@ public class CatalogCategoriesTests {
 		driver.quit();
 	}
 	
-	//RTTC_012	To Verify whether application allows the admin to display list of Categories
+	//RTTC_042-To Verify whether application allows admin to add product by entering valid credentials in mandatory fields only
 	@Test
-	public void Categories() throws InterruptedException {
-	//login
-		catalogCategoriesPOM.sendUserName("admin");
-		catalogCategoriesPOM.sendPassword("admin@123");
-		catalogCategoriesPOM.clickLoginBtn(); 
+	public void AddProduct() throws InterruptedException {
+//login
+		addProductPOM.sendUserName("admin");
+		addProductPOM.sendPassword("admin@123");
+		addProductPOM.clickLoginBtn(); 
 		screenShot.captureScreenShot("successfulLogin");
-	//go to categories
-		catalogCategoriesPOM.mouseOnCatalog();
-		catalogCategoriesPOM.ClickOnCategories();
-		screenShot.captureScreenShot("categoriesHome");
-			
-		//Validation
-		String expectedresult="Category List";   
-		String actualresult=catalogCategoriesPOM.sendmessage();   
-		Assert.assertEquals(actualresult,expectedresult);
-		screenShot.captureScreenShot("category1");	
+//Add product
+		addProductPOM.mouseOnCatalog();
+		addProductPOM.ClickOnProducts();
+		screenShot.captureScreenShot("ProductHome");
+		addProductPOM.ClickAddProd();
+		addProductPOM.sendGeneral("Finger Ring", "Finger Ring for ladies");
+		addProductPOM.sendData("SKU-012", 500, 50);
+		addProductPOM.sendLink("EARRINGS");
+		addProductPOM.ClickAdd();
+		screenShot.captureScreenShot("AddProduct");
+//validation		
+		String ExpectedMessage="Success: You have modified products!";
+		String ActualMessage=addProductPOM.getMessage();
+	   // System.out.println("actual"+ActualMessage);
+	    Assert.assertTrue(ActualMessage.contains(ExpectedMessage));
+				
 	}
 }

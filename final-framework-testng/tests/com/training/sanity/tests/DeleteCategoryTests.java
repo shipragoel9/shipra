@@ -1,25 +1,27 @@
+//RTTC_040	TO Verify whether application allows admin to delete multiple category from categories list
+	
 package com.training.sanity.tests;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
-
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
 import com.training.generics.ScreenShot;
-import com.training.pom.LoginPOM;
+import com.training.pom.DeleteCategoryPOM;
 import com.training.utility.DriverFactory;
 import com.training.utility.DriverNames;
 
-public class oldLoginTests {
+public class DeleteCategoryTests {
 
 	private WebDriver driver;
 	private String baseUrl;
-	private LoginPOM loginPOM;
+	private DeleteCategoryPOM deleteCategoryPOM;
 	private static Properties properties;
 	private ScreenShot screenShot;
 
@@ -33,7 +35,7 @@ public class oldLoginTests {
 	@BeforeMethod
 	public void setUp() throws Exception {
 		driver = DriverFactory.getDriver(DriverNames.CHROME);
-		loginPOM = new LoginPOM(driver); 
+		deleteCategoryPOM = new DeleteCategoryPOM(driver); 
 		baseUrl = properties.getProperty("baseURL");
 		screenShot = new ScreenShot(driver); 
 		// open the browser 
@@ -45,11 +47,27 @@ public class oldLoginTests {
 		Thread.sleep(1000);
 		driver.quit();
 	}
-	@Test
-	public void validLoginTest() {
-		loginPOM.sendUserName("admin");
-		loginPOM.sendPassword("admin@123");
-		loginPOM.clickLoginBtn(); 
-		screenShot.captureScreenShot("successfullogin");
+
+	//RTTC_040	TO Verify whether application allows admin to delete multiple category from categories list
+@Test
+	public void deleteCategory() throws InterruptedException {
+	//login	
+	deleteCategoryPOM.sendUserName("admin");
+		deleteCategoryPOM.sendPassword("admin@123");
+		deleteCategoryPOM.clickLoginBtn(); 
+		screenShot.captureScreenShot("successfulLogin");
+		
+		//delete category
+		deleteCategoryPOM.mouseOnCatalog();
+		deleteCategoryPOM.ClickOnCategories();
+		screenShot.captureScreenShot("categoriesHome");
+		deleteCategoryPOM.clickCategoryCheckbox("Electronic");
+		deleteCategoryPOM.deleteCategory();
+		
+		//validation
+		String ActualMessage=deleteCategoryPOM.getMessage();
+		String ExpectedMessage="Success: You have modified categories!";
+		Assert.assertTrue(ActualMessage.contains(ExpectedMessage));
+				
 	}
 }

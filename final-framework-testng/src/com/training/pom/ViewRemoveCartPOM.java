@@ -5,6 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -19,41 +20,73 @@ public class ViewRemoveCartPOM {
 	}
 	
 		
+	@FindBy(xpath="//span[contains(text(),'Shop')]")
+	private WebElement shop; 
+	
+	@FindBy(linkText="Ethnic")
+	private WebElement ethnic;
+	
+	@FindBy(xpath="//a[@href=\"http://retailm1.upskills.in/Engagement Rings\"]")
+	private WebElement Item;
+
+	@FindBy(xpath="//i[@class=\"tb_icon ico-linea-ecommerce-bag\"]")
+	private WebElement cart;
+
+	@FindBy(xpath="//a[@href=\"http://retailm1.upskills.in/checkout/cart\"]")
+	private WebElement viewcart;
+	
+	@FindBy(xpath="//i[@class=\"fa fa-times-circle\"]")
+	private WebElement remove;
+
+	@FindBy(xpath="//i[@class=\"fa fa-refresh\"]")
+	private WebElement refresh;
+
+	@FindBy(xpath="//button[contains(text(),'Add to Cart')]")
+	private WebElement AddToCart;
+	
+	@FindBy(xpath="//div[@class=\"tb_text_wrap tb_sep\"]")
+	private WebElement cartMessage;
+	
 	public void mouseoverOnShop() {
 		Actions act=new Actions(driver);
-		WebElement shop=driver.findElement(By.xpath("//span[contains(text(),'Shop')]"));
-    act.moveToElement(shop).build().perform();
+		WebElement Shop=this.shop;
+    act.moveToElement(Shop).build().perform();
 	}
     
 	public void clickOnEthnic() {
 	Actions act=new Actions(driver);
-	WebElement ethnic=driver.findElement(By.linkText("Ethnic"));
-    act.moveToElement(ethnic).click().build().perform();
+	WebElement Ethnic=this.ethnic;
+    act.moveToElement(Ethnic).click().build().perform();
         	}
     
 	public void addItem() {
-	driver.findElement(By.xpath("//a[@href=\"http://retailm1.upskills.in/Engagement Rings\"]")).click();
+	this.Item.click();
 	}
 	
 	public void viewCart() throws InterruptedException {
     Actions act=new Actions(driver);
 	ArrayList<String> windowdetails=new ArrayList<>(driver.getWindowHandles());
     driver.switchTo().window(windowdetails.get(1));
- 	driver.findElement(By.xpath("//button[contains(text(),'Add to Cart')]")).click();
+ 	this.AddToCart.click();
 
  	WebDriverWait delay=new WebDriverWait(driver,10);
 	delay.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//ul[@class=\"noty_cont noty_layout_topRight\"]")));
 	
-	WebElement cart=driver.findElement(By.xpath("//span[@class=\"tb_items\"]"));    
-    act.moveToElement(cart).build().perform();
-     WebElement ViewCart=driver.findElement(By.xpath("//a[@href=\"http://retailm1.upskills.in/checkout/cart\"]"));
+	WebElement Cart=this.cart;   
+    act.moveToElement(Cart).build().perform();
+     WebElement ViewCart=this.viewcart;
      act.moveToElement(ViewCart).click().build().perform();
      
 	}
 	
 	public void removeRefreshItem() {
-	driver.findElement(By.xpath("//i[@class=\"fa fa-times-circle\"]")).click();
-	driver.findElement(By.xpath("//i[@class=\"fa fa-refresh\"]")).click();
+	this.remove.click();
+	this.refresh.click();
+	}
+	
+	public String cartMessage() {
+		String msg=this.cartMessage.getText();
+		return msg;
 	}
 	
 }

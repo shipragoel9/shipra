@@ -1,11 +1,11 @@
 package com.training.pom;
 
-import org.openqa.selenium.By;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.Assert;
+
 
 public class AdminLoginPOM {
 	private WebDriver driver; 
@@ -24,6 +24,9 @@ public class AdminLoginPOM {
 	@FindBy(xpath="//button[@type=\"submit\"]")
 	private WebElement loginBtn; 
 	
+	@FindBy(xpath="//div[@class=\"container-fluid\"]")
+	private WebElement message; 
+	
 	public void sendUserName(String userName) {
 		this.userName.clear();
 		this.userName.sendKeys(userName);
@@ -37,7 +40,13 @@ public class AdminLoginPOM {
 	public void clickLoginBtn() {
 		this.loginBtn.click(); 
 	}
-	
 
+	public String getMessage() {
+		String Message=this.message.getText();
+			return Message;
+		
+	}
+
+	
 	
 }

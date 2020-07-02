@@ -1,16 +1,18 @@
 package com.training.pom;
 
-
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class CatalogCategoriesPOM {
+
+public class DeleteCategoryPOM {
 	private WebDriver driver; 
 	
-	public CatalogCategoriesPOM(WebDriver driver) {
+	public DeleteCategoryPOM(WebDriver driver) {
 		this.driver = driver; 
 		PageFactory.initElements(driver, this);
 	}
@@ -23,15 +25,19 @@ public class CatalogCategoriesPOM {
 	
 	@FindBy(xpath="//button[@type=\"submit\"]")
 	private WebElement loginBtn; 
-	
+
 	@FindBy(xpath="//i[@class=\"fa fa-tags fw\"]")
 	private WebElement catalog; 
-
+	
 	@FindBy(linkText="Categories")
-	private WebElement category;
-
-	@FindBy(xpath="//h3[contains(text(),'Category List')]")
+	private WebElement category; 
+	
+	@FindBy(xpath="//div[@class=\"alert alert-success\"]")
 	private WebElement message; 
+	
+	
+	
+	
 	
 	public void sendUserName(String userName) {
 		this.userName.clear();
@@ -48,6 +54,7 @@ public class CatalogCategoriesPOM {
 	}
 
 	
+	
 	public void mouseOnCatalog() {
 		WebElement Catalog=this.catalog;
         Actions act=new Actions(driver);
@@ -59,13 +66,26 @@ public class CatalogCategoriesPOM {
         		Actions act=new Actions(driver);
         		act.moveToElement(categories).click().build().perform();
 	}
-        
-	
-	public String sendmessage() {
-		String Message=this.message.getText();
-		return Message;
-	}
-	
-	}
-	
 
+	public void clickCategoryCheckbox(String Category) {
+
+        String beforeXpath="//td[contains(text(),'";
+        String afterXpath="')]//preceding-sibling::td//input";
+        String CategoryXpath=beforeXpath+Category+afterXpath;
+        driver.findElement(By.xpath(CategoryXpath)).click();     
+
+ }
+
+	
+	public void deleteCategory() {
+		driver.findElement(By.xpath("//i[@class=\"fa fa-trash-o\"]")).click();
+        Alert alertpop=driver.switchTo().alert();
+        alertpop.accept();
+        	}
+	
+	public String getMessage() {
+		String Message=this.message.getText();
+			return Message;
+		
+	}
+}

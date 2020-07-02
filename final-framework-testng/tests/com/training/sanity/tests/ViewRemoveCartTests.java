@@ -1,20 +1,22 @@
+
+//RTTC_010-To verify whether application allows the user to remove added product details from cart
+
 package com.training.sanity.tests;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
 import com.training.generics.ScreenShot;
 import com.training.pom.ViewRemoveCartPOM;
 import com.training.utility.DriverFactory;
 import com.training.utility.DriverNames;
+
 
 public class ViewRemoveCartTests {
 
@@ -46,16 +48,21 @@ public class ViewRemoveCartTests {
 		Thread.sleep(1000);
 		driver.quit();
 	}
+	
+	//RTTC_010-To verify whether application allows the user to remove added product details from cart
 	@Test
-	public void validLoginTest() throws InterruptedException {
+	public void ViewCart() throws InterruptedException {
+		//view
 		viewRemoveCartPOM.mouseoverOnShop();
 		viewRemoveCartPOM.clickOnEthnic();
 		viewRemoveCartPOM.addItem();
 	    viewRemoveCartPOM.viewCart();
 	  	viewRemoveCartPOM.removeRefreshItem();  
 	    screenShot.captureScreenShot("cartstatus");
-		   String expectedresult="Your shopping cart is empty!";   
-		   String actualresult=driver.findElement(By.xpath("//div[@class=\"tb_text_wrap tb_sep\"]")).getText();   
+	
+	    //validation
+	    String expectedresult="Your shopping cart is empty!";   
+		   String actualresult=viewRemoveCartPOM.cartMessage();
 		   Assert.assertEquals(actualresult,expectedresult);
 		
 		}

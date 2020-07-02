@@ -1,17 +1,16 @@
+//RTTC_011--To verify whether application allows user to get logged in by entering valid credentials in required field
+		
 package com.training.sanity.tests;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
-
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
 import com.training.generics.ScreenShot;
 import com.training.pom.AdminLoginPOM;
 import com.training.utility.DriverFactory;
@@ -47,6 +46,8 @@ public class AdminLoginTests {
 		Thread.sleep(1000);
 		driver.quit();
 	}
+	
+	//RTTC_011--To verify whether application allows user to get logged in by entering valid credentials in required field
 	@Test
 	public void validLoginTest() {
 		adminloginPOM.sendUserName("admin");
@@ -54,9 +55,10 @@ public class AdminLoginTests {
 		adminloginPOM.clickLoginBtn(); 
 		screenShot.captureScreenShot("loginsuccess");
 
+		//Validation
 			   String expectedresult="Dashboard";   
-			   String actualresult=driver.findElement(By.xpath("//div[@class=\"container-fluid\"]//h1[contains(text(),'Dashboard')]")).getText();   
-			   Assert.assertEquals(actualresult,expectedresult);
+			   String actualresult=adminloginPOM.getMessage();
+			   Assert.assertTrue(actualresult.contains(expectedresult));
 
 }
 }
