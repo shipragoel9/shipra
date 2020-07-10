@@ -71,7 +71,7 @@ public class AddProductPOM {
 		driver.findElement(By.id("input-meta-title1")).sendKeys(Tag);
 	}
 	
-	public void sendData(String model, double price, int Quantity) {
+	public void sendData(String model, int price, int Quantity) {
 		driver.findElement(By.linkText("Data")).click();
 		driver.findElement(By.id("input-model")).sendKeys("SKU-012");
 		driver.findElement(By.id("input-price")).sendKeys("500");

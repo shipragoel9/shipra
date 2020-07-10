@@ -29,7 +29,7 @@ public class LoginExcelTest {
 	@BeforeClass
 	public static void setUpBeforeClass() throws IOException {
 		properties = new Properties();
-		FileInputStream inStream = new FileInputStream("./resources/others.properties");
+		FileInputStream inStream = new FileInputStream("./resources/elearning.properties");
 		properties.load(inStream);
 	}
 

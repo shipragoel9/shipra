@@ -3,14 +3,14 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.training.sanity.tests.AddProductTests">
+      <class name="com.training.sanity.tests.AddMulProductNegativeTests">
         <methods>
-          <include name="AddProduct"/>
-          <include name="setUpBeforeClass"/>
           <include name="tearDown"/>
           <include name="setUp"/>
+          <include name="setUpBeforeClass"/>
+          <include name="AddProduct" invocation-numbers="2 3"/>
         </methods>
-      </class> <!-- com.training.sanity.tests.AddProductTests -->
+      </class> <!-- com.training.sanity.tests.AddMulProductNegativeTests -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
