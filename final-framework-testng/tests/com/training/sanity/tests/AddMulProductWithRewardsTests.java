@@ -78,6 +78,5 @@ public class AddMulProductWithRewardsTests {
 		String ActualMessage=addMulitpleProductWithRewardPOM.getMessage();
 	    //System.out.println("actual"+ActualMessage);
 	    Assert.assertTrue(ActualMessage.contains(ExpectedMessage));
-				
-	}
+				}
 }

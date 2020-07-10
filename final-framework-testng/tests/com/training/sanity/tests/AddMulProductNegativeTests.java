@@ -77,7 +77,6 @@ public class AddMulProductNegativeTests {
 		String ExpectedMessage="Warning: Please check the form carefully for errors!";
 		String ActualMessage=addMulitpleProductWithRewardPOM.getErrorMessage();
 	//    System.out.println("actual"+ActualMessage);
-	    Assert.assertTrue(ActualMessage.contains(ExpectedMessage));
-				
+	    Assert.assertTrue(ActualMessage.contains(ExpectedMessage));		
 	}
 }

@@ -1,4 +1,3 @@
-
 //RTTC_070--	To verify whether application allows user to place an order with Pre Logging in & admin change the status of order to complete
 
 package com.training.sanity.tests;
